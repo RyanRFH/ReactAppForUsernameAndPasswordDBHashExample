@@ -8,18 +8,22 @@ const Register = () => {
     const [username, setUsername] =  useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const [registeredMessage, setRegisteredMessage] = useState("")
 
 
     const submitHandler = async (event) => {
         event.preventDefault()
-        await registerUser(username, email, password)
+        const response = await registerUser(username, email, password)
+        // console.log("register component response = ", response)
+        response.message ? setRegisteredMessage(response.message) : setRegisteredMessage("An error occurred: " + response.errorMessage)
+
     }
 
     return (
         <div className='register'>
             <h2>Please register below</h2>
 
-            <form onSubmit={submitHandler}>
+            <form className='registerForm' onSubmit={submitHandler}>
                 <label>Username:
                     <input onChange={(event) => setUsername(event.target.value)} ></input>
                 </label>
@@ -34,6 +38,7 @@ const Register = () => {
                 </label>
                 <br></br>
                 <button type='submit'>Click here to submit</button>
+                <h1>{registeredMessage}</h1>
             </form>
             
         </div>
