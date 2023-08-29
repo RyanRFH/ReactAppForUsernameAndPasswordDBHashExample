@@ -48,7 +48,7 @@ export const loginUser = async (username, password, newUser) => {
 
 export const getAllUsers = async (token) => {
     try {
-        const response = await fetch("http://localhost:5001/users/getAllUsers", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}users/getAllUsers`, {
             method: "GET",
             headers:{"Content-Type" : "application/json", "Authorization" : `${token}`}
         })
@@ -82,7 +82,7 @@ export const authCheck = async (token) => {
 }
 
 export const deleteUser = async (user, token) => {
-    const response = await fetch("http://localhost:5001/users/deleteUser", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}users/deleteUser`, {
         method: "DELETE",
         headers:{"Content-Type" : "application/json", "Authorization" : token},
         body: JSON.stringify({
