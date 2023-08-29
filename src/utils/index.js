@@ -67,7 +67,7 @@ export const getAllUsers = async (token) => {
 
 export const authCheck = async (token) => {
     try {
-        const response = await fetch("http://localhost:5001/users/authCheck", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}users/authCheck`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
